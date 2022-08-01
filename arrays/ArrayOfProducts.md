@@ -15,7 +15,6 @@ Complexity:
 ```cpp
 #include <vector>
 using namespace std;
-
 vector<int> arrayOfProducts(vector<int> array) {
  int n=array.size();
   if(n<=1) return array;
