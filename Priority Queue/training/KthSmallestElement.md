@@ -1,4 +1,5 @@
-TC: O(nlogn)
+TC: O(K log K +  (N – K) log K)
+
 SC: O(k)
 
 ```cpp
