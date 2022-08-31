@@ -19,7 +19,7 @@ public:
         if( head == nullptr ) return false;
         if( head->next == nullptr ) return false; // if one node exits
         if( head->next->next == nullptr ) return false; 
-        ListNode *slow = head; //at 1st node
+        ListNode *slow = head->next; //at 2st node
         ListNode *fast = head->next->next; // at 3rd node
         
         while( slow != nullptr && fast != nullptr ){
