@@ -1,4 +1,6 @@
-Question Link:https://leetcode.com/problems/partition-equal-subset-sum
+Question Link:
+1. https://leetcode.com/problems/partition-equal-subset-sum
+2. https://www.geeksforgeeks.org/partition-problem-dp-18/
 
 Complexity: O(n*sum) - time & space
 
