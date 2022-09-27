@@ -4,7 +4,7 @@ Video Link: https://www.youtube.com/watch?v=RZO6oR443nQ
 
 Complexity: 
 - time: O(n)
-- space: O(1)
+- space: O(n)
 
 ```cpp
 #include<bits/stdc++.h>
