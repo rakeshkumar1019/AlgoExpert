@@ -9,51 +9,58 @@ Complexity:
 ```cpp
 #include<bits/stdc++.h>
 using namespace std;
-int minNoOfCoins(vector<int> coins,int n, int sum){
-   vector<vector<int>>res(n+1,vector<int>(sum+1,0));
-   for(int j=0;j<=sum;j++){
-     res[0][j] = INT_MAX-1;
-   }
-   for( int i=1;i<=n;i++){
-     res[i][0] = 0;
-   }
-   for(int j=1;j<=sum;j++){
-     if(j%coins[0] == 0){
-       res[1][j] = j/coins[0];
-     }else{
-       res[1][j] = INT_MAX-1;
-     }
-   }
-   for(int i=2;i<=n;i++){
-     for(int j=1;j<=sum;j++){
-         if(coins[i-1] <= j ){
-           res[i][j] = min(1+res[i][j-coins[i-1]],res[i-1][j]);
-         }else{
-           res[i][j] = res[i-1][j];
-         }
-     }
-   }
-   for(auto x: res){
-     for(int y: x){
-       cout<<y<<" ";
-     }cout<<endl;
-   }
-   if(res[n][sum] == INT_MAX-1){
-     return -1;
-   }else{
-     return res[n][sum];
-   }
+int getPartitionIndex(vector<int> &array,int n){
+  int totalSum=0;
+  for(int i=0;i<n;i++){
+    totalSum+=array[i];
+  }
+  int rightSum=0;
+  for(int i=n-1;i>=0;i--){
+    rightSum+=array[i];
+    totalSum-=array[i];
+    if(rightSum == totalSum){
+      return i;
+    }
+  }
+  return -1;
+}
+vector<vector<int>> splitEqualSumSubArray(vector<int> array){
+  int n = array.size();
+  vector<vector<int>> res;
+  if( n == 0 ) return res;
+  int splitIndex = getPartitionIndex(array,n);
+  if( splitIndex == -1){
+    cout<<" No Possible"<<endl;
+    return res;
+  }else{
+    vector<int> one,two;
+    for(int i = 0;i<splitIndex;i++){
+       one.push_back(array[i]);
+    }
+    for(int i=splitIndex;i<n;i++){
+      two.push_back(array[i]);
+    }
+    res.push_back(one);
+    res.push_back(two);
+
+  }
 }
 int main(){
-  int n,sum;
-  cin>>n>>sum;
-  vector<int> coins;
+  int n;
+  cin>>n;
+  vector<int> array;
   for(int i=0;i<n;i++){
     int input;
     cin>>input;
-    coins.push_back(input);
+    array.push_back(input);
   }
-  cout<<minNoOfCoins(coins,n,sum)<<endl;
+  vector<vector<int>> res = splitEqualSumSubArray(array);
+  for(auto x: res){
+    for(auto j : x){
+      cout<<j<<" ";
+    }cout<<endl;
+  }
+  
 }
 
 ```
